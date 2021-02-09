@@ -94,7 +94,7 @@ export type Props = {
     [name: string]: (view: EditorView, event: Event) => boolean;
   };
   uploadImage?: (file: File) => Promise<string>;
-  transformImageSrc?: (src: string) => string;
+fno  transformImageSrc?: (src: string) => string;
   onSave?: ({ done: boolean }) => void;
   onCancel?: () => void;
   onChange: (value: () => string) => void;

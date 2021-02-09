@@ -94,7 +94,7 @@ class Example extends React.Component {
     this.setState({ value });
   };
 
-  handleChange = debounce(value => {
+  handleChange = debounce((value) => {
     const text = value();
     console.log(text);
     localStorage.setItem("saved", text);
@@ -137,20 +137,20 @@ class Example extends React.Component {
             paste: () => console.log("PASTE"),
             touchstart: () => console.log("TOUCH START"),
           }}
-          onSave={options => console.log("Save triggered", options)}
+          onSave={(options) => console.log("Save triggered", options)}
           onCancel={() => console.log("Cancel triggered")}
           onChange={this.handleChange}
           onClickLink={(href, event) =>
             console.log("Clicked link: ", href, event)
           }
-          onHoverLink={event => {
+          onHoverLink={(event) => {
             console.log("Hovered link: ", event.target.href);
             return false;
           }}
           onClickHashtag={(tag, event) =>
             console.log("Clicked hashtag: ", tag, event)
           }
-          onCreateLink={title => {
+          onCreateLink={(title) => {
             // Delay to simulate time taken for remote API request to complete
             return new Promise((resolve, reject) => {
               setTimeout(() => {
@@ -165,28 +165,31 @@ class Example extends React.Component {
             });
           }}
           onShowToast={(message, type) => window.alert(`${type}: ${message}`)}
-          onSearchLink={async term => {
+          onSearchLink={async (term) => {
             console.log("Searched link: ", term);
 
             // Delay to simulate time taken for remote API request to complete
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
               setTimeout(() => {
                 resolve(
-                  docSearchResults.filter(result =>
+                  docSearchResults.filter((result) =>
                     result.title.toLowerCase().includes(term.toLowerCase())
                   )
                 );
               }, Math.random() * 500);
             });
           }}
-          uploadImage={file => {
+          uploadImage={(file) => {
             console.log("File upload triggered: ", file);
 
             // Delay to simulate time taken to upload
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
               setTimeout(() => resolve("https://picsum.photos/600/600"), 1500);
             });
           }}
+          transformImageSrc={() =>
+            "https://bookface-images.s3.amazonaws.com/small_logos/c4a973a0300bcf108fdd2a681e5499d0d9f23c5e.png"
+          }
           embeds={[
             {
               title: "YouTube",
@@ -198,7 +201,7 @@ class Example extends React.Component {
                   height={24}
                 />
               ),
-              matcher: url => {
+              matcher: (url) => {
                 return url.match(
                   /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([a-zA-Z0-9_-]{11})$/i
                 );
